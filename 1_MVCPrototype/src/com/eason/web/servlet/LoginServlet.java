@@ -1,6 +1,6 @@
 package com.eason.web.servlet;
 
-import com.eason.dao.UserDao;
+import com.eason.dao.impl.UserDaoImpl;
 import com.eason.domain.User;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -31,8 +31,8 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        UserDao userDao = new UserDao();
-        User user = userDao.userLogin(loginUser);
+        UserDaoImpl userDaoImpl = new UserDaoImpl();
+        User user = userDaoImpl.userlogin(loginUser);
 
         if(user== null){
             req.getRequestDispatcher("/failServlet").forward(req,resp);
