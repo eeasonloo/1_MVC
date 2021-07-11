@@ -11,19 +11,19 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * Druid连接池的工具类
+ * Druid Data Source Pool Util
  */
 public class JDBCUtils {
 
-    //1.定义成员变量 DataSource
+    //1.Member Variable: DataSource
     private static DataSource ds ;
 
     static{
         try {
-            //1.加载配置文件
+                //1.Load config
             Properties pro = new Properties();
             pro.load(JDBCUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
-            //2.获取DataSource
+            //2.get DataSource
             ds = DruidDataSourceFactory.createDataSource(pro);
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,21 +33,21 @@ public class JDBCUtils {
     }
 
     /**
-     * 获取连接池方法
+     * Function: get DataSouce
      */
 
     public static DataSource getDataSource(){
         return  ds;
     }
     /**
-     * 获取连接
+     * Function: get Connections
      */
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
 
     /**
-     * 释放资源
+     * Release resources
      */
     public static void close(Statement stmt,Connection conn){
 
@@ -77,7 +77,7 @@ public class JDBCUtils {
 
         if(conn != null){
             try {
-                conn.close();//归还连接
+                conn.close();//return connection ...not close!
             } catch (SQLException e) {
                 e.printStackTrace();
             }
