@@ -26,7 +26,7 @@
   Hello, This is MVC Program.
   <h1>
     <div align="center" style="text-decoration:none;font-size:33px">
-      <a href="#">
+      <a href="${pageContext.request.contextPath}/userListServlet">
         Check User Info Table
       </a>
     </div>

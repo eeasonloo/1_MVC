@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="container">
-    <h3 style="text-align: center">User Infomation List</h3>
+    <h3 style="text-align: center">User Information List</h3>
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
             <th>ID</th>
@@ -37,13 +37,13 @@
             <th>Operation</th>
         </tr>
 
-        <c:forEach items="${users}" var="user" varStatus="s">
+        <c:forEach items="${usersList}" var="user" varStatus="s">
             <tr>
                 <td>${s.count}</td>
                 <td>${user.name}</td>
                 <td>${user.gender}</td>
                 <td>${user.age}</td>
-                <td>${user.address}</td>
+                <td>${user.nationality}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
                 <td><a class="btn btn-default btn-sm" href="update.html">Edit</a>&nbsp;<a class="btn btn-default btn-sm" href="">Delete</a></td>
