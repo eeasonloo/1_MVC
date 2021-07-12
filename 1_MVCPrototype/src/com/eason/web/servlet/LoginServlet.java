@@ -2,6 +2,8 @@ package com.eason.web.servlet;
 
 import com.eason.dao.impl.UserDaoImpl;
 import com.eason.domain.User;
+import com.eason.service.UserService;
+import com.eason.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -24,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String generatedVerifyCode = (String) req.getSession().getAttribute("CHECKCODE_SERVER");
 
         if(!generatedVerifyCode.equalsIgnoreCase(verifycode)){
-            req.setAttribute("login.msg","VerifyCodeWrong!");
+            req.setAttribute("login_msg","VerifyCodeWrong!");
             req.getRequestDispatcher("/login.jsp").forward(req,resp);
             return;
         }
@@ -42,14 +44,15 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
-        User user = userDaoImpl.userlogin(loginUser);
-        System.out.println(user.getName()+user.getPassword());
+        UserService userService = new UserServiceImpl();
+        User user = userService.login(loginUser);
 
-        if(user== null){
+        if(user == null){
+            req.setAttribute("login_msg","Username/Password Wrong");
             req.getRequestDispatcher("/failServlet").forward(req,resp);
         }else{
-            req.setAttribute("user",user);
+
+            req.getSession().setAttribute("user",user);
             req.getRequestDispatcher("/successServlet").forward(req,resp);
         }
 

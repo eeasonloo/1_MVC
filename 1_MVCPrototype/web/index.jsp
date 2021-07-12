@@ -23,7 +23,7 @@
 </head>
 
   <body>
-  Hello, This is MVC Program.
+  Hello, ${sessionScope.user.name}
   <h1>
     <div align="center" style="text-decoration:none;font-size:33px">
       <a href="${pageContext.request.contextPath}/userListServlet">

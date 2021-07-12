@@ -12,8 +12,10 @@ public class FailServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=utf-8");
-        resp.getWriter().write("Login Fail, username and password wrong!");
+        /*resp.setContentType("text/html;charset=utf-8");
+        resp.getWriter().write("Login Fail, username and password wrong!");*/
+
+        req.getRequestDispatcher("/login.jsp").forward(req,resp);
     }
 
     @Override
