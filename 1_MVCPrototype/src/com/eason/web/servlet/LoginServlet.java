@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -23,7 +24,10 @@ public class LoginServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
 
         String verifycode = req.getParameter("verifycode");
-        String generatedVerifyCode = (String) req.getSession().getAttribute("CHECKCODE_SERVER");
+        HttpSession session = req.getSession();
+        String generatedVerifyCode = (String) session.getAttribute("CHECKCODE_SERVER");
+        session.removeAttribute("CHECKCODE_SERVER");
+
 
         if(!generatedVerifyCode.equalsIgnoreCase(verifycode)){
             req.setAttribute("login_msg","VerifyCodeWrong!");
@@ -52,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("/failServlet").forward(req,resp);
         }else{
 
-            req.getSession().setAttribute("user",user);
+            session.setAttribute("user",user);
             req.getRequestDispatcher("/successServlet").forward(req,resp);
         }
 
