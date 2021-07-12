@@ -24,7 +24,37 @@
 </head>
 <body>
 <div class="container">
-    <h3 style="text-align: center">User Information List</h3>
+    <h1 style="text-align: center;margin-bottom: 50px">User Information List</h1>
+
+    <div style="float: left;">
+
+        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
+            <div class="form-group">
+                <label for="exampleInputName2">name</label>
+                <input type="text" name="name" value="${condition.name[0]}" class="form-control" id="exampleInputName2" >
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName3">nationality</label>
+                <input type="text" name="address" value="${condition.nationality[0]}" class="form-control" id="exampleInputName3" >
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail2">email</label>
+                <input type="text" name="email" value="${condition.email[0]}" class="form-control" id="exampleInputEmail2"  >
+            </div>
+            <button type="submit" class="btn btn-default">search</button>
+        </form>
+
+    </div>
+
+    <div style="float: right;margin: 5px;">
+
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">Add User</a>
+        <a class="btn btn-primary" href="javascript:void(0);" id="delSelected">Delete Selected</a>
+
+    </div>
+    <form id="form" action="${pageContext.request.contextPath}/delSelectedServlet" method="post">
+
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
             <th>ID</th>
@@ -56,6 +86,34 @@
             <td colspan="8" align="center"><a class="btn btn-primary" href="add.html">Add User</a></td>
         </tr>
     </table>
+    </form>
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <span style="font-size: 25px;margin-left: 5px;">
+                    共16条记录，共4页
+                </span>
+
+            </ul>
+        </nav>
+
+
+    </div>
 </div>
 </body>
 </html>
