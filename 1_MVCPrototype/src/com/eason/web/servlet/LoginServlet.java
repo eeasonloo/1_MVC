@@ -20,11 +20,22 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
 
+        String verifycode = req.getParameter("verifycode");
+        String generatedVerifyCode = (String) req.getSession().getAttribute("CHECKCODE_SERVER");
+
+        if(!generatedVerifyCode.equalsIgnoreCase(verifycode)){
+            req.setAttribute("login.msg","VerifyCodeWrong!");
+            req.getRequestDispatcher("/login.jsp").forward(req,resp);
+            return;
+        }
+
         Map<String, String[]> map = req.getParameterMap();
         User loginUser = new User();
 
+
         try {
             BeanUtils.populate(loginUser,map);
+
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -33,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 
         UserDaoImpl userDaoImpl = new UserDaoImpl();
         User user = userDaoImpl.userlogin(loginUser);
+        System.out.println(user.getName()+user.getPassword());
 
         if(user== null){
             req.getRequestDispatcher("/failServlet").forward(req,resp);
