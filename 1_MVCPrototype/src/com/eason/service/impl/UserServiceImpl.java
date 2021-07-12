@@ -7,9 +7,15 @@ import com.eason.service.UserService;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+    private UserDaoImpl userDao = new UserDaoImpl();
+
+    @Override
+    public User login(User user) {
+        return userDao.userlogin(user);
+    }
+
     @Override
     public List<User> findAll() {
-        UserDaoImpl userDao = new UserDaoImpl();
         return userDao.findAll();
     }
 }
