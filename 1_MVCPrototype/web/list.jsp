@@ -104,7 +104,7 @@
 
         <c:forEach items="${usersList}" var="user" varStatus="s">
             <tr>
-                <th><input type="checkbox" name="userCheckbox" id="userCheckbox"></th>
+                <th><input type="checkbox" name="userCheckbox" id="userCheckbox" value="${user.id}"></th>
                 <td>${s.count}</td>
                 <td>${user.name}</td>
                 <td>${user.gender}</td>
