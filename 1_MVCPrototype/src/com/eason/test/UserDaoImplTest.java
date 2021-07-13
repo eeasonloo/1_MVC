@@ -32,8 +32,14 @@ public class UserDaoImplTest {
         for (User user : users) {
             System.out.println(user.getName());
         }
+    }
 
-
-
+    @Test
+    public void addUser(){
+        UserDaoImpl userDao = new UserDaoImpl();
+        User addUser = new User();
+        addUser.setName("testing");
+        addUser.setGender("male");
+        userDao.addUser(addUser);
     }
 }
