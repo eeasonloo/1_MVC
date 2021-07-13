@@ -40,4 +40,15 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
+    @Override
+    public boolean addUser(User addUser) {
+        String sql = "insert into mvc values(null,?,?,?,?,?,?,null,null)";
+        int update = template.update(sql, addUser.getName(), addUser.getGender(),
+                addUser.getAge(), addUser.getNationality(),
+                addUser.getQq(), addUser.getEmail());
+
+        if(update>0) return true;
+        else return false;
+    }
+
 }

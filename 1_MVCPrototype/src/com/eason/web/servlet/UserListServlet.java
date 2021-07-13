@@ -22,8 +22,6 @@ public class UserListServlet extends HttpServlet {
 
         request.getRequestDispatcher("/list.jsp").forward(request,response);
 
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

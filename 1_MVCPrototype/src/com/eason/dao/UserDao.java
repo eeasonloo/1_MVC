@@ -10,4 +10,5 @@ public interface UserDao {
 
     public List<User> findAll();
 
+    boolean addUser(User addUser);
 }
