@@ -11,4 +11,6 @@ public interface UserDao {
     public List<User> findAll();
 
     boolean addUser(User addUser);
+
+    boolean delSeletedUser(int i);
 }

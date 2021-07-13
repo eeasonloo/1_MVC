@@ -11,4 +11,6 @@ public interface UserService {
     public List<User> findAll();
 
     boolean addUser(User addUser);
+
+    boolean delSelectedUser(String[] ids);
 }

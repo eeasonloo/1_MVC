@@ -51,4 +51,13 @@ public class UserDaoImpl implements UserDao {
         else return false;
     }
 
+    @Override
+    public boolean delSeletedUser(int i) {
+        String sql ="delete from mvc where id = ?";
+        int update = template.update(sql, i);
+
+        if(update>0) return true;
+        else return false;
+    }
+
 }

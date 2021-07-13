@@ -59,6 +59,7 @@
         <button type="button" class="close" data-dismiss="alert" >
             <span>&times;</span></button>
         <strong>${add_msg}</strong>
+        <strong>${del_msg}</strong>
     </div>
     <div style="float: left;margin-top: 10px">
 

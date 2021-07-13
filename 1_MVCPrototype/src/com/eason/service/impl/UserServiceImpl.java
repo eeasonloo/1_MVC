@@ -23,4 +23,15 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User addUser) {
         return userDao.addUser(addUser);
     }
+
+    @Override
+    public boolean delSelectedUser(String[] ids) {
+        boolean flag =false;
+
+        for (String id : ids) {
+            int i = Integer.parseInt(id);
+            flag = userDao.delSeletedUser(i);
+        }
+        return flag;
+    }
 }
