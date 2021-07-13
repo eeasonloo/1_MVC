@@ -20,13 +20,20 @@
         td, th {
             text-align: center;
         }
+
+
     </style>
 </head>
 <body>
 <div class="container">
     <h1 style="text-align: center;margin-bottom: 50px">User Information List</h1>
 
-    <div style="float: left;">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" >
+            <span>&times;</span></button>
+        <strong>${add_msg}</strong>
+    </div>
+    <div style="float: left;margin-top: 10px">
 
         <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
             <div class="form-group">
@@ -47,7 +54,7 @@
 
     </div>
 
-    <div style="float: right;margin: 5px;">
+    <div style="float: right;margin: 5px;margin-top: 10px">
 
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">Add User</a>
         <a class="btn btn-primary" href="javascript:void(0);" id="delSelected">Delete Selected</a>
@@ -83,7 +90,7 @@
 
 
         <tr>
-            <td colspan="8" align="center"><a class="btn btn-primary" href="add.html">Add User</a></td>
+            <td colspan="8" align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">Add User</a></td>
         </tr>
     </table>
     </form>
