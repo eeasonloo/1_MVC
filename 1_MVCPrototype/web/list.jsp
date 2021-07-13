@@ -20,9 +20,36 @@
         td, th {
             text-align: center;
         }
-
-
     </style>
+    <script>
+        window.onload = function (){
+            document.getElementById("firstCheckbox").onclick = function(){
+                var userCheckbox = document.getElementsByName("userCheckbox")
+
+                for (var i = 0; i < userCheckbox.length; i++) {
+                    userCheckbox[i].checked = this.checked;
+                }
+            }
+            document.getElementById("delSelected").onclick = function(){
+               if(confirm("Do you want to delete the records?")){
+                   var userCheckbox = document.getElementsByName("userCheckbox");
+
+                   var flag = false;
+                   for (var i = 0; i < userCheckbox.length ; i++) {
+                       if (userCheckbox[i].checked) {
+                           flag = true;
+                           break;
+                       }
+                   }
+                       if(flag){
+                           document.getElementById("form").submit();
+                       }
+
+                }
+
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -64,6 +91,7 @@
 
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
+            <th><input type="checkbox" id="firstCheckbox"></th>
             <th>ID</th>
             <th>Name</th>
             <th>Gender</th>
@@ -76,6 +104,7 @@
 
         <c:forEach items="${usersList}" var="user" varStatus="s">
             <tr>
+                <th><input type="checkbox" name="userCheckbox" id="userCheckbox"></th>
                 <td>${s.count}</td>
                 <td>${user.name}</td>
                 <td>${user.gender}</td>
