@@ -22,6 +22,12 @@
         }
     </style>
     <script>
+        function deleteUser(id){
+            if(confirm("Do you want to delete this record?")){
+                location.href="${pageContext.request.contextPath}/delUserServlet?id="+id;
+            }
+        }
+
         window.onload = function (){
             document.getElementById("firstCheckbox").onclick = function(){
                 var userCheckbox = document.getElementsByName("userCheckbox")
@@ -48,6 +54,7 @@
                 }
 
             }
+
         }
     </script>
 </head>
@@ -113,14 +120,15 @@
                 <td>${user.nationality}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="update.html">Edit</a>&nbsp;<a class="btn btn-default btn-sm" href="">Delete</a></td>
+                <td><a class="btn btn-default btn-sm" href="update.html">Edit</a>&nbsp;
+                    <a class="btn btn-default btn-sm" id="deleteUser" href="javascript:deleteUser(${user.id})">Delete</a></td>
             </tr>
 
         </c:forEach>
 
 
         <tr>
-            <td colspan="8" align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">Add User</a></td>
+            <td colspan="9" align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">Add User</a></td>
         </tr>
     </table>
     </form>

@@ -43,12 +43,12 @@
         </div>
 
         <div class="form-group">
-            <label for="qq">QQ：</label>
+            <label for="qq">QQ:</label>
             <input type="text" class="form-control" name="qq" placeholder="Enter QQ"/>
         </div>
 
         <div class="form-group">
-            <label for="email">Email：</label>
+            <label for="email">Email:</label>
             <input type="text" class="form-control" name="email" placeholder="Enter Email Address"/>
         </div>
 
