@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService {
         }
         return flag;
     }
+
+    @Override
+    public void deleteUser(String id) {
+        userDao.delSeletedUser(Integer.parseInt(id));
+    }
 }
