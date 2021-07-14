@@ -15,4 +15,6 @@ public interface UserDao {
     boolean delSeletedUser(int i);
 
     User findUser(int id);
+
+    void updateUser(User updateUser);
 }

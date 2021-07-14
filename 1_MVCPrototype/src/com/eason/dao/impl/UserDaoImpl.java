@@ -67,4 +67,12 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
+    public void updateUser(User updateUser) {
+        String sql ="update mvc set name = ?,gender = ? ,age = ? , nationality = ? , qq = ?, email = ? where id = ?";
+        template.update(sql, updateUser.getName(),updateUser.getGender(),
+                updateUser.getAge(),updateUser.getNationality(),
+                updateUser.getQq(),updateUser.getEmail(),updateUser.getId());
+    }
+
 }

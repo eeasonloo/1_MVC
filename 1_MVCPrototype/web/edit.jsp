@@ -20,7 +20,10 @@
 <body>
 <div class="container">
     <center><h3>Edit User Page</h3></center>
-    <form action="${pageContext.request.contextPath}/EditUserServlet" method="post">
+    <form action="${pageContext.request.contextPath}/editUserServlet" method="post">
+
+        <input type="hidden" name="id" value="${userInfo.id}">
+
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="${userInfo.name}">
