@@ -13,4 +13,6 @@ public interface UserDao {
     boolean addUser(User addUser);
 
     boolean delSeletedUser(int i);
+
+    User findUser(int id);
 }

@@ -15,4 +15,6 @@ public interface UserService {
     boolean delSelectedUser(String[] ids);
 
     void deleteUser(String id);
+
+    User findUser( String id);
 }

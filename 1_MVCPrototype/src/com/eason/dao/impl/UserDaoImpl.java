@@ -60,4 +60,11 @@ public class UserDaoImpl implements UserDao {
         else return false;
     }
 
+    @Override
+    public User findUser(int id) {
+        String sql = "select * from mvc where id = ?";
+        User user = template.queryForObject(sql, new BeanPropertyRowMapper<>(User.class),id);
+        return user;
+    }
+
 }
