@@ -34,15 +34,20 @@ public class FindUserByPageServlet extends HttpServlet {
         int currentPage = Integer.parseInt(_currentPage);
         int row = Integer.parseInt(_row);
 
+        if(currentPage < 1){ currentPage =1;}
+
 
         UserServiceImpl userService = new UserServiceImpl();
 
         int totalCount = userService.findTotalCount();
+        int totalPage = totalCount%row==0?totalCount/row:totalCount/row+1;
+
+        if(currentPage > totalPage){
+            currentPage = totalPage;
+        }
         int pageBegin= (currentPage-1)*row;
 
         List<User> usersByPage = userService.findUsersByPage(pageBegin,row);
-
-        int totalPage = totalCount%row==0?totalCount/row:totalCount/row+1;
 
         PageBean pb = new PageBean();
 
@@ -52,11 +57,11 @@ public class FindUserByPageServlet extends HttpServlet {
         pb.setList(usersByPage);
         pb.setRow(row);
 
-        System.out.println(pb);
+       /* System.out.println(pb);
         List list = pb.getList();
         for (Object u : list) {
             System.out.println(((User)u).toString());
-        }
+        }*/
 
         request.setAttribute("pb",pb);
 
