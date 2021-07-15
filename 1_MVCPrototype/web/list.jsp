@@ -135,11 +135,19 @@
     <div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
+
+                <c:if test="${pb.currentPage == 1}">
+                    <li class="disabled">
+                </c:if>
+                <c:if test="${pb.currentPage > 1}">
+                    <li>
+                </c:if>
+                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${pb.currentPage-1}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+
                 <c:forEach begin="1" end="${pb.totalPage}" var="i">
                     <c:if test="${pb.currentPage==i}">
                         <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
@@ -147,15 +155,20 @@
                     <c:if test="${pb.currentPage!=i}">
                         <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
                     </c:if>
-
-
                 </c:forEach>
 
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+                <c:if test="${pb.currentPage < pb.totalPage}">
+                    <li >
+                </c:if>
+
+                <c:if test="${pb.currentPage == pb.totalPage}">
+                    <li class="disabled">
+                </c:if>
+                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${pb.currentPage+1}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
                 <span style="font-size: 25px;margin-left: 5px;">
                     共${pb.row}条记录，共${pb.totalPage}页
                 </span>
