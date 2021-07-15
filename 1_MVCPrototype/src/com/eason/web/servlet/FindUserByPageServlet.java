@@ -28,7 +28,7 @@ public class FindUserByPageServlet extends HttpServlet {
         }
 
         if (_row == null || _row.equals("")) {
-            _row = "1";
+            _row = "5";
         }
 
         int currentPage = Integer.parseInt(_currentPage);

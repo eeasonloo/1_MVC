@@ -141,7 +141,14 @@
                     </a>
                 </li>
                 <c:forEach begin="1" end="${pb.totalPage}" var="i">
-                    <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
+                    <c:if test="${pb.currentPage==i}">
+                        <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
+                    </c:if>
+                    <c:if test="${pb.currentPage!=i}">
+                        <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
+                    </c:if>
+
+
                 </c:forEach>
 
                 <li>
