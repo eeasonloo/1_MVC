@@ -53,6 +53,10 @@ public class FindUserByPageServlet extends HttpServlet {
         pb.setRow(row);
 
         System.out.println(pb);
+        List list = pb.getList();
+        for (Object u : list) {
+            System.out.println(((User)u).toString());
+        }
 
         request.setAttribute("pb",pb);
 
