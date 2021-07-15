@@ -26,7 +26,7 @@
   Hello, ${sessionScope.user.name}
   <h1>
     <div align="center" style="text-decoration:none;font-size:33px">
-      <a href="${pageContext.request.contextPath}/userListServlet">
+      <a href="${pageContext.request.contextPath}/findUserByPageServlet">
         Check User Info Table
       </a>
     </div>

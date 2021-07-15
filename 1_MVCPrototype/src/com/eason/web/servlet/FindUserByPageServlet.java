@@ -3,6 +3,7 @@ package com.eason.web.servlet;
 import com.eason.domain.PageBean;
 import com.eason.domain.User;
 import com.eason.service.impl.UserServiceImpl;
+import jdk.nashorn.internal.ir.CallNode;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -19,8 +20,19 @@ import java.util.Map;
 public class FindUserByPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-        int row = Integer.parseInt(request.getParameter("row"));
+        String _currentPage = request.getParameter("currentPage");
+        String _row = request.getParameter("row");
+
+        if(_currentPage == null || _currentPage.equals("")){
+            _currentPage ="1";
+        }
+
+        if (_row == null || _row.equals("")) {
+            _row = "1";
+        }
+
+        int currentPage = Integer.parseInt(_currentPage);
+        int row = Integer.parseInt(_row);
 
 
         UserServiceImpl userService = new UserServiceImpl();
@@ -30,7 +42,7 @@ public class FindUserByPageServlet extends HttpServlet {
 
         List<User> usersByPage = userService.findUsersByPage(pageBegin,row);
 
-        int totalPage = totalCount%row==0 ? totalCount/row : totalCount/row+1;
+        int totalPage = totalCount%row==0?totalCount/row:totalCount/row+1;
 
         PageBean pb = new PageBean();
 
@@ -39,6 +51,8 @@ public class FindUserByPageServlet extends HttpServlet {
         pb.setCurrentPage(currentPage);
         pb.setList(usersByPage);
         pb.setRow(row);
+
+        System.out.println(pb);
 
         request.setAttribute("pb",pb);
 
