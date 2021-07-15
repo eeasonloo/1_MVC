@@ -49,4 +49,16 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User updateUser) {
         userDao.updateUser(updateUser);
     }
+
+    @Override
+    public int findTotalCount() {
+        return userDao.findTotalCount();
+    }
+
+    @Override
+    public List<User> findUsersByPage(int pageBegin, int row) {
+        return userDao.findUsersByPage(pageBegin,row);
+    }
+
+
 }

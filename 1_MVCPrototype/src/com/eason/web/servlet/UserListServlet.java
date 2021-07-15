@@ -1,5 +1,6 @@
 package com.eason.web.servlet;
 
+import com.eason.domain.PageBean;
 import com.eason.domain.User;
 import com.eason.service.UserService;
 import com.eason.service.impl.UserServiceImpl;
@@ -20,8 +21,11 @@ public class UserListServlet extends HttpServlet {
 
         request.setAttribute("usersList",usersList);
 
-        request.getRequestDispatcher("/list.jsp").forward(request,response);
+        /*PageBean pb =new PageBean();
+        pb.setTotalPage(10);
+        request.setAttribute("pb",pb);*/
 
+        request.getRequestDispatcher("/list.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -75,4 +75,17 @@ public class UserDaoImpl implements UserDao {
                 updateUser.getQq(),updateUser.getEmail(),updateUser.getId());
     }
 
+    @Override
+    public int findTotalCount() {
+        String sql = "select count(*) from mvc where 1=1";
+        return template.queryForObject(sql, Integer.class);
+
+    }
+
+    @Override
+    public List<User> findUsersByPage(int pageBegin, int row) {
+        String sql = "select * from mvc limit ?,?";
+        return template.query(sql, new BeanPropertyRowMapper<>(User.class), pageBegin, row);
+    }
+
 }

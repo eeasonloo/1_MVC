@@ -19,4 +19,8 @@ public interface UserService {
     User findUser( String id);
 
     void updateUser(User updateUser);
+
+    int findTotalCount();
+
+    List<User> findUsersByPage(int pageBegin, int row);
 }

@@ -17,4 +17,8 @@ public interface UserDao {
     User findUser(int id);
 
     void updateUser(User updateUser);
+
+    int findTotalCount();
+
+    List<User> findUsersByPage(int pageBegin, int row);
 }

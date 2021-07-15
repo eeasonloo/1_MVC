@@ -140,18 +140,17 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <c:forEach begin="1" end="${pb.totalPage}" var="i">
+                    <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
+                </c:forEach>
+
                 <li>
                     <a href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
                 <span style="font-size: 25px;margin-left: 5px;">
-                    共16条记录，共4页
+                    共${pb.row}条记录，共${pb.totalPage}页
                 </span>
 
             </ul>
