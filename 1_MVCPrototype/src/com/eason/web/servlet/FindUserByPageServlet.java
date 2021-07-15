@@ -60,7 +60,7 @@ public class FindUserByPageServlet extends HttpServlet {
 
         request.setAttribute("pb",pb);
 
-        response.sendRedirect("/list.jsp");
+        request.getRequestDispatcher("/list.jsp").forward(request,response);
 
 
 
