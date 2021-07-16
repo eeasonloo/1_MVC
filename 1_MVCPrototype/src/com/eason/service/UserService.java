@@ -1,5 +1,6 @@
 package com.eason.service;
 
+import com.eason.domain.PageBean;
 import com.eason.domain.User;
 
 import java.util.List;
@@ -20,7 +21,5 @@ public interface UserService {
 
     void updateUser(User updateUser);
 
-    int findTotalCount();
-
-    List<User> findUsersByPage(int pageBegin, int row);
+    PageBean<User> findUsersByPage(String pageBegin, String row);
 }

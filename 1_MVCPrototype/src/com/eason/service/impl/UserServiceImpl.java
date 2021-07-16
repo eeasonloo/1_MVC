@@ -1,6 +1,7 @@
 package com.eason.service.impl;
 
 import com.eason.dao.impl.UserDaoImpl;
+import com.eason.domain.PageBean;
 import com.eason.domain.User;
 import com.eason.service.UserService;
 
@@ -51,8 +52,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int findTotalCount() {
-        return userDao.findTotalCount();
+    public int findTotalCount(String _currentPage, String _row) {
+
+        int currentPage = Integer.parseInt(_currentPage);
+        int row = Integer.parseInt(_row);
+
+        if(currentPage < 1){ currentPage =1;}
+
+        int totalCount = userService.findTotalCount(currentPage,row);
+        int totalPage = totalCount%row==0?totalCount/row:totalCount/row+1;
+
+        if(currentPage > totalPage){
+            currentPage = totalPage;
+        }
+        int pageBegin= (currentPage-1)*row;
+
+        List<User> usersByPage = userService.findUsersByPage(pageBegin,row);
+
+        PageBean pb = new PageBean();
+
+        pb.setTotalCount(totalCount);
+        pb.setTotalPage(totalPage);
+        pb.setCurrentPage(currentPage);
+        pb.setList(usersByPage);
+        pb.setRow(row);
+
+        return userDao.findTotalCount(currentPage,row);
     }
 
     @Override

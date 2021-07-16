@@ -1,5 +1,6 @@
 package com.eason.web.servlet;
 
+import com.eason.domain.ConditionBean;
 import com.eason.domain.PageBean;
 import com.eason.domain.User;
 import com.eason.service.impl.UserServiceImpl;
@@ -20,48 +21,22 @@ import java.util.Map;
 public class FindUserByPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String _currentPage = request.getParameter("currentPage");
-        String _row = request.getParameter("row");
+        Map<String, String[]> map = request.getParameterMap();
 
-        if(_currentPage == null || _currentPage.equals("")){
-            _currentPage ="1";
+        String currentPage = request.getParameter("currentPage");
+        String row = request.getParameter("row");
+
+        if(currentPage == null || currentPage.equals("")){
+            currentPage ="1";
         }
 
-        if (_row == null || _row.equals("")) {
-            _row = "5";
+        if (row == null || row.equals("")) {
+            row = "5";
         }
-
-        int currentPage = Integer.parseInt(_currentPage);
-        int row = Integer.parseInt(_row);
-
-        if(currentPage < 1){ currentPage =1;}
-
 
         UserServiceImpl userService = new UserServiceImpl();
 
-        int totalCount = userService.findTotalCount();
-        int totalPage = totalCount%row==0?totalCount/row:totalCount/row+1;
-
-        if(currentPage > totalPage){
-            currentPage = totalPage;
-        }
-        int pageBegin= (currentPage-1)*row;
-
-        List<User> usersByPage = userService.findUsersByPage(pageBegin,row);
-
-        PageBean pb = new PageBean();
-
-        pb.setTotalCount(totalCount);
-        pb.setTotalPage(totalPage);
-        pb.setCurrentPage(currentPage);
-        pb.setList(usersByPage);
-        pb.setRow(row);
-
-       /* System.out.println(pb);
-        List list = pb.getList();
-        for (Object u : list) {
-            System.out.println(((User)u).toString());
-        }*/
+        PageBean<User> pb = userService.findUsersByPage(currentPage, row);
 
         request.setAttribute("pb",pb);
 
