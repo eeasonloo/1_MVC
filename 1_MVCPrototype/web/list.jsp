@@ -170,7 +170,7 @@
                     </li>
 
                 <span style="font-size: 25px;margin-left: 5px;">
-                    共${pb.row}条记录，共${pb.totalPage}页
+                    共${pb.totalCount}条记录，共${pb.totalPage}页
                 </span>
 
             </ul>

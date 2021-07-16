@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delSelectedUser(String[] ids) {
-        boolean flag =false;
+        boolean flag = false;
 
         for (String id : ids) {
             int i = Integer.parseInt(id);
@@ -52,22 +52,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int findTotalCount(String _currentPage, String _row) {
+    public PageBean<User> findUsersByPage(String _currentPage, String _row) {
 
         int currentPage = Integer.parseInt(_currentPage);
         int row = Integer.parseInt(_row);
 
-        if(currentPage < 1){ currentPage =1;}
+        int totalCount = userDao.findTotalCount();
+        int totalPage = totalCount % row == 0 ? totalCount / row : totalCount / row + 1;
 
-        int totalCount = userService.findTotalCount(currentPage,row);
-        int totalPage = totalCount%row==0?totalCount/row:totalCount/row+1;
+        if(currentPage < 1) currentPage =1;
+        if (currentPage > totalPage) currentPage = totalPage;
 
-        if(currentPage > totalPage){
-            currentPage = totalPage;
-        }
-        int pageBegin= (currentPage-1)*row;
+        int pageBegin = (currentPage - 1) * row;
 
-        List<User> usersByPage = userService.findUsersByPage(pageBegin,row);
+        List<User> usersByPage = userDao.findUsersByPage(pageBegin, row);
 
         PageBean pb = new PageBean();
 
@@ -77,13 +75,8 @@ public class UserServiceImpl implements UserService {
         pb.setList(usersByPage);
         pb.setRow(row);
 
-        return userDao.findTotalCount(currentPage,row);
+        return pb;
     }
-
-    @Override
-    public List<User> findUsersByPage(int pageBegin, int row) {
-        return userDao.findUsersByPage(pageBegin,row);
-    }
-
-
 }
+
+

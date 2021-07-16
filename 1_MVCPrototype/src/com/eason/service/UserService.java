@@ -21,5 +21,5 @@ public interface UserService {
 
     void updateUser(User updateUser);
 
-    PageBean<User> findUsersByPage(String pageBegin, String row);
+    PageBean<User> findUsersByPage(String _currentPage, String _row);
 }
