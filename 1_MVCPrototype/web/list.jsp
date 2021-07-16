@@ -142,7 +142,7 @@
                 <c:if test="${pb.currentPage > 1}">
                     <li>
                 </c:if>
-                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${pb.currentPage-1}" aria-label="Previous">
+                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${pb.currentPage-1}&name=${condition.name[0]}&address=${condition.nationality[0]}&email=${condition.email[0]}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -150,10 +150,10 @@
 
                 <c:forEach begin="1" end="${pb.totalPage}" var="i">
                     <c:if test="${pb.currentPage==i}">
-                        <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
+                        <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}&name=${condition.name[0]}&address=${condition.nationality[0]}&email=${condition.email[0]}">${i}</a></li>
                     </c:if>
                     <c:if test="${pb.currentPage!=i}">
-                        <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}">${i}</a></li>
+                        <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${i}&name=${condition.name[0]}&address=${condition.nationality[0]}&email=${condition.email[0]}">${i}</a></li>
                     </c:if>
                 </c:forEach>
 
@@ -164,7 +164,7 @@
                 <c:if test="${pb.currentPage == pb.totalPage}">
                     <li class="disabled">
                 </c:if>
-                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${pb.currentPage+1}" aria-label="Next">
+                        <a href="${pageContext.request.contextPath}/findUserByPageServlet?row=5&currentPage=${pb.currentPage+1}&name=${condition.name[0]}&address=${condition.nationality[0]}&email=${condition.email[0]}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
