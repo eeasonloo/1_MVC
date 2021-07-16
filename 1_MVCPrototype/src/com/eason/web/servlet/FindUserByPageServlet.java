@@ -16,7 +16,8 @@ import java.util.Map;
 public class FindUserByPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Map<String, String[]> map = request.getParameterMap();
+        Map<String, String[]> conditions = request.getParameterMap();
+
 
         String currentPage = request.getParameter("currentPage");
         String row = request.getParameter("row");
@@ -31,7 +32,7 @@ public class FindUserByPageServlet extends HttpServlet {
 
         UserServiceImpl userService = new UserServiceImpl();
 
-        PageBean<User> pb = userService.findUsersByPage(currentPage, row);
+        PageBean<User> pb = userService.findUsersByPage(currentPage, row, conditions);
 
         request.setAttribute("pb",pb);
 

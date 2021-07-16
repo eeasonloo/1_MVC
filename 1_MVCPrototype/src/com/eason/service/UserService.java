@@ -4,6 +4,7 @@ import com.eason.domain.PageBean;
 import com.eason.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
@@ -21,5 +22,5 @@ public interface UserService {
 
     void updateUser(User updateUser);
 
-    PageBean<User> findUsersByPage(String _currentPage, String _row);
+    PageBean<User> findUsersByPage(String _currentPage, String _row, Map<String, String[]> conditions);
 }

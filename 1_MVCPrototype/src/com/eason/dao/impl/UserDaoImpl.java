@@ -8,7 +8,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 public class UserDaoImpl implements UserDao {
@@ -83,9 +86,35 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findUsersByPage(int pageBegin, int row) {
-        String sql = "select * from mvc limit ?,?";
-        return template.query(sql, new BeanPropertyRowMapper<>(User.class), pageBegin, row);
+    public List<User> findUsersByPage(int pageBegin, int row, Map<String, String[]> conditions) {
+
+        String sql = "select * from mvc where 1=1";
+        StringBuilder sb = new StringBuilder(sql);
+
+        ArrayList<Object> params = new ArrayList<>();
+
+
+        Set<String> keys = conditions.keySet();
+        for (String key : keys) {
+            if(key.equals("currentPage") || key.equals("rows")){
+                continue;
+            }
+            String value = conditions.get(key)[0];
+
+            if(value != null && !value.equals("")){
+                sb.append(" and " + key + " like ?");
+                params.add("%"+value+"%");
+            }
+
+        }
+        sb.append(" limit ?,?");
+        params.add(pageBegin);
+        params.add(row);
+
+        System.out.println(sb);
+        System.out.println(params);
+
+        return template.query(sb.toString(), new BeanPropertyRowMapper<User>(User.class),params.toArray() );
     }
 
 }

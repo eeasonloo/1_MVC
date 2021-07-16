@@ -3,6 +3,7 @@ package com.eason.dao;
 import com.eason.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserDao {
 
@@ -20,5 +21,5 @@ public interface UserDao {
 
     int findTotalCount();
 
-    List<User> findUsersByPage(int pageBegin, int row);
+    List<User> findUsersByPage(int pageBegin, int row, Map<String, String[]> conditions);
 }

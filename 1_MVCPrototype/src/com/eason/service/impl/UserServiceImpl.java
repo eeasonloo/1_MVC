@@ -6,6 +6,7 @@ import com.eason.domain.User;
 import com.eason.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserServiceImpl implements UserService {
     private UserDaoImpl userDao = new UserDaoImpl();
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<User> findUsersByPage(String _currentPage, String _row) {
+    public PageBean<User> findUsersByPage(String _currentPage, String _row, Map<String, String[]> conditions) {
 
         int currentPage = Integer.parseInt(_currentPage);
         int row = Integer.parseInt(_row);
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
 
         int pageBegin = (currentPage - 1) * row;
 
-        List<User> usersByPage = userDao.findUsersByPage(pageBegin, row);
+        List<User> usersByPage = userDao.findUsersByPage(pageBegin, row, conditions);
 
         PageBean pb = new PageBean();
 
