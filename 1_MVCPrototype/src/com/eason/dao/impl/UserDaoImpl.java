@@ -103,7 +103,7 @@ public class UserDaoImpl implements UserDao {
 
             if(value != null && !value.equals("")){
                 sb.append(" and " + key + " like ?");
-                params.add("\"%"+value+"%\"");
+                params.add("%"+value+"%");
             }
 
         }
@@ -113,6 +113,7 @@ public class UserDaoImpl implements UserDao {
 
         System.out.println(sb);
         System.out.println(params);
+
 
         List<User> query = template.query(sb.toString(), new BeanPropertyRowMapper<User>(User.class), params.toArray());
         System.out.println(query);

@@ -77,7 +77,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputName3">nationality</label>
-                <input type="text" name="address" value="${condition.nationality[0]}" class="form-control" id="exampleInputName3" >
+                <input type="text" name="nationality" value="${condition.nationality[0]}" class="form-control" id="exampleInputName3" >
             </div>
 
             <div class="form-group">
