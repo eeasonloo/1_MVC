@@ -96,14 +96,14 @@ public class UserDaoImpl implements UserDao {
 
         Set<String> keys = conditions.keySet();
         for (String key : keys) {
-            if(key.equals("currentPage") || key.equals("rows")){
+            if(key.equals("currentPage") || key.equals("row")){
                 continue;
             }
             String value = conditions.get(key)[0];
 
             if(value != null && !value.equals("")){
                 sb.append(" and " + key + " like ?");
-                params.add("%"+value+"%");
+                params.add("\"%"+value+"%\"");
             }
 
         }
@@ -114,7 +114,9 @@ public class UserDaoImpl implements UserDao {
         System.out.println(sb);
         System.out.println(params);
 
-        return template.query(sb.toString(), new BeanPropertyRowMapper<User>(User.class),params.toArray() );
+        List<User> query = template.query(sb.toString(), new BeanPropertyRowMapper<User>(User.class), params.toArray());
+        System.out.println(query);
+        return query;
     }
 
 }
