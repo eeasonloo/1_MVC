@@ -22,7 +22,7 @@ public class SensitiveWordsForFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         try {
             ServletContext servletContext = filterConfig.getServletContext();
-            String realPath = servletContext.getRealPath("/WEB-INF/classes/Sensitive WrdsForFilter.txt");
+            String realPath = servletContext.getRealPath("/WEB-INF/classes/SensitiveWordsForFilter.txt");
             BufferedReader br = new BufferedReader(new FileReader(realPath));
             String line = null;
 
@@ -53,8 +53,9 @@ public class SensitiveWordsForFilter implements Filter {
 
                     if(value != null){
                         for (String sensitiveWord : sensitiveWordsList) {
-                            if(value.contains(sensitiveWord))
-                                value.replaceAll(sensitiveWord,"*cutie pie");
+                            if(value.contains(sensitiveWord)) {
+                                value = value.replaceAll(sensitiveWord, "cutiePie");
+                            }
                         }
                     }
                     return value;
