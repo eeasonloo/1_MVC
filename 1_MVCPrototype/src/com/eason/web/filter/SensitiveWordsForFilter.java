@@ -45,7 +45,7 @@ public class SensitiveWordsForFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        Proxy.newProxyInstance(servletRequest.getClass().getClassLoader(), servletRequest.getClass().getInterfaces(), new InvocationHandler() {
+        ServletRequest proxy_req = (ServletRequest) Proxy.newProxyInstance(servletRequest.getClass().getClassLoader(), servletRequest.getClass().getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 if(method.getName().equals("getParameter")){
@@ -61,7 +61,8 @@ public class SensitiveWordsForFilter implements Filter {
                 }
                 return method.invoke(servletRequest,args);
             }
-        })
+        });
+        filterChain.doFilter(proxy_req,servletResponse);
     }
 
     @Override
