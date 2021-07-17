@@ -22,11 +22,11 @@ public class FindUserByPageServlet extends HttpServlet {
         String currentPage = request.getParameter("currentPage");
         String row = request.getParameter("row");
 
-        if(currentPage == null || currentPage.equals("")){
+        if(currentPage == null || "".equals(currentPage)){
             currentPage ="1";
         }
 
-        if (row == null || row.equals("")) {
+        if (row == null || "".equals(currentPage)) {
             row = "5";
         }
 

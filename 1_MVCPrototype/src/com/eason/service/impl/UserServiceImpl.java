@@ -61,8 +61,13 @@ public class UserServiceImpl implements UserService {
         int totalCount = userDao.findTotalCount(conditions);
         int totalPage = totalCount % row == 0 ? totalCount / row : totalCount / row + 1;
 
-        if(currentPage < 1) currentPage =1;
-        if (currentPage > totalPage) currentPage = totalPage;
+        if(currentPage <= 0) {currentPage = 1;}
+        if (currentPage >= totalPage) {
+            if(totalPage == 0)
+                currentPage = 1;
+            if(totalPage != 0)
+                currentPage = totalPage;
+        }
 
         int pageBegin = (currentPage - 1) * row;
 
