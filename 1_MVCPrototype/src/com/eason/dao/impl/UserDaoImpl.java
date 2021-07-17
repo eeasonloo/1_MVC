@@ -79,9 +79,29 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int findTotalCount() {
+    public int findTotalCount(Map<String, String[]> conditions) {
         String sql = "select count(*) from mvc where 1=1";
-        return template.queryForObject(sql, Integer.class);
+
+        StringBuilder sb = new StringBuilder(sql);
+
+        ArrayList<Object> params = new ArrayList<>();
+
+
+        Set<String> keys = conditions.keySet();
+        for (String key : keys) {
+            if(key.equals("currentPage") || key.equals("row")){
+                continue;
+            }
+            String value = conditions.get(key)[0];
+
+            if(value != null && !value.equals("")){
+                sb.append(" and " + key + " like ?");
+                params.add("%"+value+"%");
+            }
+
+        }
+
+        return template.queryForObject(sb.toString(), Integer.class, params.toArray());
 
     }
 

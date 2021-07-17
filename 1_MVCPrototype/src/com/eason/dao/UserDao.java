@@ -19,7 +19,7 @@ public interface UserDao {
 
     void updateUser(User updateUser);
 
-    int findTotalCount();
+    int findTotalCount(Map<String, String[]> conditions);
 
     List<User> findUsersByPage(int pageBegin, int row, Map<String, String[]> conditions);
 }
