@@ -8,13 +8,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebFilter("/*")
 public class SensitiveWordsForFilter implements Filter {
 
-    List sensitiveWordsList = new ArrayList<>();
+    List<String> sensitiveWordsList = new ArrayList<String>();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         try {
@@ -42,6 +45,23 @@ public class SensitiveWordsForFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
+        Proxy.newProxyInstance(servletRequest.getClass().getClassLoader(), servletRequest.getClass().getInterfaces(), new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                if(method.getName().equals("getParameter")){
+                    String value = (String) method.invoke(servletRequest,args);
+
+                    if(value != null){
+                        for (String sensitiveWord : sensitiveWordsList) {
+                            if(value.contains(sensitiveWord))
+                                value.replaceAll(sensitiveWord,"*cutie pie");
+                        }
+                    }
+                    return value;
+                }
+                return method.invoke(servletRequest,args);
+            }
+        })
     }
 
     @Override
