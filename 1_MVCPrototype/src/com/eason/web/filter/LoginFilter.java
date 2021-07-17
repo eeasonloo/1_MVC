@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
             if (user != null){
                 filterChain.doFilter(req,servletResponse);
             }else {
-                req.setAttribute("login_msg","You haven't login in yet!");
+                req.setAttribute("login_msg","Please Login before Accessing!");
                 req.getRequestDispatcher("/login.jsp").forward(req,servletResponse);
             }
         }
