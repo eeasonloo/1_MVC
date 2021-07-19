@@ -48,11 +48,11 @@
 			$(function () {
 				$("#registerForm").submit(function(){
 					if(checkUsername() && checkPassword() && checkEmail()){
-						$.post("user/request",$(this).serialize(),function (data) {
+						$.post("user/request",$(this).serialize(),function(data) {
 							if(data.flag){
 								location.href = "register_ok.html";
 							}else{
-								$("errorMsg").html(data.errorMsg);
+								$("#errorMsg").html(data.errorMsg);
 							}
 						});
 					}
