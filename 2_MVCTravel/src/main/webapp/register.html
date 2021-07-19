@@ -11,11 +11,8 @@
 
 			function checkUsername(){
 				var username = $("#username").val();
-
 				var reg_username = /^\w{8,20}$/;
-
 				var flag= reg_username.test(username);
-
 				if(flag){
 					$("#username").css("border","");
 				}else{
@@ -24,8 +21,21 @@
 				return flag;
 			}
 
+			function checkPassword(){
+				var password = $("#password").val();
+				var reg_password = /^\w{8,20}$/;
+				var flag= reg_password.test(password);
+				if(flag){
+					$("#password").css("border","");
+				}else{
+					$("#password").css("border","1px solid red");
+				}
+				return flag;
+			}
+
 			$(function () {
 				$("#username").blur(checkUsername);
+				$("#password").blur(checkPassword);
 			});
 		</script>
     </head>
