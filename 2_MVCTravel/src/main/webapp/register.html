@@ -33,9 +33,22 @@
 				return flag;
 			}
 
+			function checkEmail(){
+				var email = $("#email").val();
+				var reg_email = /^\w+@\w+\.\w+$/;
+				var flag = reg_email.test(email);
+				if(flag){
+					$("#email").css("border","");
+				}else {
+					$("#email").css("border","solid 1px red");
+				}
+				return flag;
+			}
+
 			$(function () {
 				$("#username").blur(checkUsername);
 				$("#password").blur(checkPassword);
+				$("#email").blur(checkEmail);
 			});
 		</script>
     </head>
