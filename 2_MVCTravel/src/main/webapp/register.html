@@ -49,11 +49,12 @@
 				$("#registerForm").submit(function(){
 					if(checkUsername() && checkPassword() && checkEmail()){
 						$.post("user/register",$(this).serialize(),function(data) {
-							if(data.flag){
+							/*if(data.flag){
 								location.href = "register_ok.html";
 							}else{
 								$("#errorMsg").html(data.errorMsg);
-							}
+							}*/
+							return true;
 						});
 					}
 					return false;
