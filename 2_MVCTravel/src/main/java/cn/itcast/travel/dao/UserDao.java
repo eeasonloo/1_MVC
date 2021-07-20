@@ -1,0 +1,10 @@
+package cn.itcast.travel.dao;
+
+import cn.itcast.travel.domain.User;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+public interface UserDao {
+    User findByUsername(String username);
+
+    Boolean registerUser(User user);
+}
