@@ -2,6 +2,7 @@ package cn.itcast.travel.web.servlet;
 
 import cn.itcast.travel.domain.ResultInfo;
 import cn.itcast.travel.domain.User;
+import cn.itcast.travel.service.UserService;
 import cn.itcast.travel.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.beanutils.BeanUtils;
@@ -33,7 +34,7 @@ public class RegisterUserServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         boolean flag = userService.register(user);
 
         ResultInfo resultInfo = new ResultInfo();
