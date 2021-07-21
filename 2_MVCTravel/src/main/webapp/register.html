@@ -49,12 +49,12 @@
 				$("#registerForm").submit(function(){
 					if(checkUsername() && checkPassword() && checkEmail()){
 						$.post("user/register",$(this).serialize(),function(data) {
-							/*if(data.flag){
-								location.href = "register_ok.html";
+							//{flag:true;errorMsg:""blablabla"}
+							if(data.flag){
+								location.href="register_ok.html"
 							}else{
 								$("#errorMsg").html(data.errorMsg);
-							}*/
-							return true;
+							}
 						});
 					}
 					return false;
@@ -76,6 +76,8 @@
     				<p>USER REGISTER</p>
     			</div>
     			<div class="rg_form_center">
+
+					<div id="errorMsg" style="color: red; text-align: center"></div>
 					
 					<!--注册表单-->
     				<form id="registerForm">

@@ -19,6 +19,9 @@ import java.util.Map;
 @WebServlet("/user/register")
 public class RegisterUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
         Map<String, String[]> map = request.getParameterMap();
 
         /*String[] emails = map.get("email");
