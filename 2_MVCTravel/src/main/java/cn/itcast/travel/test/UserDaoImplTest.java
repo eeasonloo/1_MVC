@@ -18,5 +18,15 @@ public class UserDaoImplTest {
         System.out.println(user);
     }
 
+    @Test
+    public void registerUser(){
+        User user = new User();
+        user.setUsername("Test");
+        user.setPassword("abc");
+        user.setEmail("test@123.com");
+
+        userDao.registerUser(user);
+    }
+
 
 }

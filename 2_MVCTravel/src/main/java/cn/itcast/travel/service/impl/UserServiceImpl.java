@@ -16,11 +16,11 @@ public class UserServiceImpl implements UserService {
 
         if(u != null){
             return false;
-
         }
 
         // Insert User Info
-//        Boolean flag = userDao.registerUser(user);
+        Boolean flag = userDao.registerUser(user);
+
         return true;
     }
 }

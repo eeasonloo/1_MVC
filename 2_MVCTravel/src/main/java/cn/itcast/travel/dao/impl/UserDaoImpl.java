@@ -13,7 +13,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByUsername(String username) {
-        System.out.println(username);
         User user = null;
         try {
             String sql = "select * from tab_user where username = ?";
@@ -28,6 +27,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Boolean registerUser(User user) {
-        return null;
+        String sql = "insert into tab_user values(null,?,?,?,?,?,?,?,?,?)";
+        int update = template.update(sql, user.getUsername(), user.getPassword(), user.getName(),
+                user.getBirthday(), user.getSex(), user.getTelephone(), user.getEmail(), null, null);
+        if(update>1) {
+            return true;
+        }
+        return false;
     }
 }
