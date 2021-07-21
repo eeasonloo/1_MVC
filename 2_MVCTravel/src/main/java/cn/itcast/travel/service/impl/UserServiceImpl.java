@@ -11,7 +11,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean register(User user) {
         // Check Username Exist or not
-        System.out.println(user.toString());
         User u = userDao.findByUsername(user.getUsername());
 
         if(u != null){
@@ -19,7 +18,6 @@ public class UserServiceImpl implements UserService {
         }
 
         // Insert User Info
-        System.out.println(user.toString());
         Boolean flag = userDao.registerUser(user);
 
         return true;

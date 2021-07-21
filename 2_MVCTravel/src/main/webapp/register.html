@@ -49,11 +49,14 @@
 				$("#registerForm").submit(function(){
 					if(checkUsername() && checkPassword() && checkEmail()){
 						$.post("user/register",$(this).serialize(),function(data) {
-							//{flag:true;errorMsg:""blablabla"}
+
 							if(data.flag){
-								location.href="register_ok.html"
+								//注册成功，跳转成功页面
+								location.href="register_ok.html";
 							}else{
+								//注册失败,给errorMsg添加提示信息
 								$("#errorMsg").html(data.errorMsg);
+
 							}
 						});
 					}
