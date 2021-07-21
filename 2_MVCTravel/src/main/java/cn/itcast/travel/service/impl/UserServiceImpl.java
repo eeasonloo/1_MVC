@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // Insert User Info
+        System.out.println(user.toString());
         Boolean flag = userDao.registerUser(user);
 
         return true;

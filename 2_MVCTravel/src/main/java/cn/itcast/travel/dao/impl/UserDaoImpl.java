@@ -19,18 +19,16 @@ public class UserDaoImpl implements UserDao {
             user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username);
             System.out.println(user);
         } catch (DataAccessException e) {
-            e.printStackTrace();
-            return null;
+
         }
         return user;
     }
 
     @Override
     public Boolean registerUser(User user) {
-        String sql = "insert into tab_user values(null,?,?,?,?,?,?,?,?,?)";
-        int update = template.update(sql, user.getUsername(), user.getPassword(), user.getName(),
-                user.getBirthday(), user.getSex(), user.getTelephone(), user.getEmail(), null, null);
-        if(update>1) {
+        String sql = "insert into tab_user values(null,?,?,?,?,?,?,?,null,null)";
+        int update = template.update(sql, user.getUsername(), user.getPassword(), user.getName(), user.getBirthday(), user.getSex(), user.getTelephone(), user.getEmail());
+        if(update>0) {
             return true;
         }
         return false;
