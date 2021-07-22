@@ -44,7 +44,8 @@ public class UserServiceImpl implements UserService {
         if(u!=null){
             i =userDao.activateUser(u);
         }
-        if(i > 1){
+
+        if(i > 0){
             return true;
         }
         return false;

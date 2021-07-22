@@ -7,4 +7,8 @@ public interface UserDao {
     User findByUsername(String username);
 
     Boolean registerUser(User user);
+
+    User findUserByCode(String code);
+
+    Integer activateUser(User u);
 }
