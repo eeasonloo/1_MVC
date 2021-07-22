@@ -24,6 +24,7 @@ public class RegisterUserServlet extends HttpServlet {
         String check = request.getParameter("check");
         HttpSession session = request.getSession();
         String genCheckCode = (String) session.getAttribute("CHECKCODE_SERVER");
+        session.removeAttribute("CHECKCODE_SERVER");
 
         ResultInfo resultInfo = new ResultInfo();
         ObjectMapper mapper = new ObjectMapper();
