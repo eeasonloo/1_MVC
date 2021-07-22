@@ -26,10 +26,27 @@ public class UserServiceImpl implements UserService {
        /* String content ="<a href ='http://localhost/travel/user/active?code='" + user.getCode() + "> click this link to activate </a>";
         MailUtils.sendMail(user.getEmail(),content, "Activation Mail");*/
 
-        System.out.println("http://localhost/travel/user/active?code=" + user.getCode());
+        System.out.println("http://localhost/travel/activateUserServlet?code=" + user.getCode());
 
         Boolean flag = userDao.registerUser(user);
 
         return true;
+    }
+
+    @Override
+    public boolean activateUser(String code) {
+        int i = 0;
+
+        // 1. findUserByCode
+        User u =userDao.findUserByCode(code);
+
+        // 2. set User.status to "Y"
+        if(u!=null){
+            i =userDao.activateUser(u);
+        }
+        if(i > 1){
+            return true;
+        }
+        return false;
     }
 }
