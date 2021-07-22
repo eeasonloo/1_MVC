@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -20,7 +21,21 @@ import java.util.Map;
 public class RegisterUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String check = request.getParameter("check");
+        HttpSession session = request.getSession();
+        String genCheckCode = (String) session.getAttribute("CHECKCODE_SERVER");
 
+        ResultInfo resultInfo = new ResultInfo();
+        ObjectMapper mapper = new ObjectMapper();
+
+        if(!check.equalsIgnoreCase(genCheckCode)){
+            resultInfo.setFlag(false);
+            resultInfo.setErrorMsg("The Verification inserted is wrong!");
+            String json = mapper.writeValueAsString(resultInfo);
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().write(json);
+            return;
+        }
 
         Map<String, String[]> map = request.getParameterMap();
 
@@ -40,7 +55,7 @@ public class RegisterUserServlet extends HttpServlet {
         UserService userService = new UserServiceImpl();
         boolean flag = userService.register(user);
 
-        ResultInfo resultInfo = new ResultInfo();
+
 
         if(flag){
             resultInfo.setFlag(true);
@@ -49,7 +64,7 @@ public class RegisterUserServlet extends HttpServlet {
             resultInfo.setErrorMsg("The register doesnt success!");
         }
 
-        ObjectMapper mapper = new ObjectMapper();
+
         String json = mapper.writeValueAsString(resultInfo);
 
         response.setContentType("application/json;charset=utf-8");
