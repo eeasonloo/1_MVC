@@ -18,6 +18,21 @@
     <script src="js/angular.min.js"></script>
 	<!--导入jquery-->
 	<script src="js/jquery-3.3.1.js"></script>
+	<script>
+		$(function(){
+			$("#login").click(function(){
+				$.post("/loginUserServlet",$("#loginForm").serialize(),function(data){
+					if(data.flag){
+						location.href="index.html";
+					}else{
+						var errorMsg = data.errorMsg;
+						$("#errorMsg").html(errorMsg);
+					}
+
+				});
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -43,7 +58,7 @@
         			<input name="password" type="text" placeholder="请输入密码" autocomplete="off">
         			<div class="verify">
 					<input name="check" type="text" placeholder="请输入验证码" autocomplete="off">
-					<span><img src="checkCode" alt="" onclick="changeCheckCode(this)"></span>
+					<span><img src="/travel/checkCode" alt="" onclick="changeCheckCode(this)"></span>
 					<script type="text/javascript">
 						//图片点击事件
 						function changeCheckCode(img) {
@@ -52,7 +67,7 @@
 					</script>
 			</div>
 			<div class="submit_btn">
-        				<button type="button">登录</button>
+        				<button type="button" id="login">登录</button>
         				<div class="auto_login">
         					<input type="checkbox" name="" class="checkbox">
         					<span>自动登录</span>
