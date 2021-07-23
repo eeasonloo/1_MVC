@@ -50,4 +50,11 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public User loginUser(User loginUser) {
+
+        User loginReturnUser = userDao.findUserByUsernameAndPassword(loginUser);
+        return loginReturnUser;
+    }
 }

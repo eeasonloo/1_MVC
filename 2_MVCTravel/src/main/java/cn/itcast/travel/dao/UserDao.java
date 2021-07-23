@@ -11,4 +11,6 @@ public interface UserDao {
     User findUserByCode(String code);
 
     Integer activateUser(User u);
+
+    User findUserByUsernameAndPassword(User loginUser);
 }

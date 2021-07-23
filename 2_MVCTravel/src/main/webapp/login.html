@@ -15,18 +15,17 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
       <!--导入angularJS文件-->
-    <script src="js/angular.min.js"></script>
+    <!--<script src="js/angular.min.js"></script>-->
 	<!--导入jquery-->
 	<script src="js/jquery-3.3.1.js"></script>
 	<script>
 		$(function(){
 			$("#login").click(function(){
-				$.post("/loginUserServlet",$("#loginForm").serialize(),function(data){
+				$.post("loginUserServlet",$("#loginForm").serialize(),function(data){
 					if(data.flag){
 						location.href="index.html";
 					}else{
-						var errorMsg = data.errorMsg;
-						$("#errorMsg").html(errorMsg);
+						$("#errorMsg").html(dataerrorMsg);
 					}
 
 				});
