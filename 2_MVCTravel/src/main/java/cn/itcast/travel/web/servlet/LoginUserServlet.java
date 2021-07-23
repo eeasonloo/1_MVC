@@ -50,10 +50,9 @@ public class LoginUserServlet extends HttpServlet {
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(resultInfo);
 
         response.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(response.getOutputStream(),json);
+        mapper.writeValue(response.getOutputStream(),resultInfo);
 
 
     }
