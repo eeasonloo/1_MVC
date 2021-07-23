@@ -19,7 +19,6 @@ import java.util.Map;
 public class LoginUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String[]> map = request.getParameterMap();
-        System.out.println(map);
         User loginUser = new User();
 
         try {
