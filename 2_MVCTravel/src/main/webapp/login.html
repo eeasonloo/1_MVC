@@ -21,7 +21,7 @@
 	<script>
 		$(function(){
 			$("#login").click(function(){
-				$.post("loginUserServlet",$("#loginForm").serialize(),function(data){
+				$.post("user/login",$("#loginForm").serialize(),function(data){
 					if(data.flag){
 						location.href="index.html";
 					}else{
