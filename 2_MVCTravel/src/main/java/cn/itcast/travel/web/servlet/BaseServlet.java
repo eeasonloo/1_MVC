@@ -17,7 +17,7 @@ public class BaseServlet extends HttpServlet {
         System.out.println(requestURI); ///travel/user/add
 
         String methodName = requestURI.substring(requestURI.lastIndexOf("/") + 1);
-        System.out.println(methodName);
+
 
         try {
             Method method = this.getClass().getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);

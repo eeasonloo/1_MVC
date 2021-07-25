@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
        /* String content ="<a href ='http://localhost/travel/user/active?code='" + user.getCode() + "> click this link to activate </a>";
         MailUtils.sendMail(user.getEmail(),content, "Activation Mail");*/
 
-        System.out.println("http://localhost/travel/activateUserServlet?code=" + user.getCode());
+        System.out.println("http://localhost/travel/user/activate?code=" + user.getCode());
 
         Boolean flag = userDao.registerUser(user);
 
