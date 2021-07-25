@@ -1,7 +1,7 @@
 <script src="js/getParameter.js"></script>
 <script>
   $(function(){
-      $.get("showNameServlet",{},function(data){
+      $.get("showUserServlet",{},function(data){
           var msg = "Welcome Back, " + data.name;
           $("#showName").html(msg);
       });
