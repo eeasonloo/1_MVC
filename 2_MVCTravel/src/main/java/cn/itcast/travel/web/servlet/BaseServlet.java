@@ -19,10 +19,10 @@ public class BaseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestURI = req.getRequestURI();
-        System.out.println(requestURI); ///travel/user/add
+        /*System.out.println(requestURI); ///travel/user/add*/
 
         String methodName = requestURI.substring(requestURI.lastIndexOf("/") + 1);
-        System.out.println(methodName);
+        /*System.out.println(methodName);*/
 
         try {
             Method method = this.getClass().getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
