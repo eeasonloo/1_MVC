@@ -7,12 +7,12 @@
       });
 
       $.get("category/findCategoryList",{},function(data){
-          var lis = '<li class="nav-active"><a href="index.html">首页</a></li>';
+          var lis = '<li class="nav-active"><a href="index.html">Home Page</a></li>';
 
           for (var i = 0; i < data.length ; i++) {
               lis += '<li><a href="route_list.html"?cid='+data.cid+'>'+data.cname+'</a></li>';
           }
-          lis += '<li><a href="favoriterank.html">收藏排行榜</a></li>';
+          lis += '<li><a href="favoriterank.html">Favourite Ranking</a></li>';
           $("#categoryList").html(lis);
       })
   });
