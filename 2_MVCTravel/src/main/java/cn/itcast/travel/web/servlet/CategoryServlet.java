@@ -22,7 +22,7 @@ public class CategoryServlet extends BaseServlet {
 
     public void findCategoryList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Category> categoryList = categoryService.findCategoryList();
-        System.out.println(categoryList);
+//        System.out.println(categoryList);
         this.writeValue(categoryList, response);
 
 
