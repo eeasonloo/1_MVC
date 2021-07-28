@@ -10,7 +10,7 @@
           var lis = '<li class="nav-active"><a href="index.html">Home Page</a></li>';
 
           for (var i = 0; i < data.length ; i++) {
-              lis += '<li><a href="route_list.html"?cid='+data[i].cid+'>'+data[i].cname+'</a></li>';
+              lis += '<li><a href="route_list.html?cid='+data[i].cid+'">'+data[i].cname+'</a></li>';
           }
           lis += '<li><a href="favoriterank.html">Favourite Ranking</a></li>';
           $("#categoryList").html(lis);
