@@ -8,6 +8,7 @@ import cn.itcast.travel.domain.Category;
 import cn.itcast.travel.service.CategoryService;
 import cn.itcast.travel.util.JedisUtil;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Tuple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,13 @@ public class CategoryServiceImpl implements CategoryService {
 
         Jedis jedis = JedisUtil.getJedis();
 
-            Set<String> categorySetFromRedis = jedis.zrange("categoryList", 0, -1);
+//        Set<String> categorySetFromRedis = jedis.zrange("categoryList", 0, -1);
+
+        Set<Tuple> tupleSet = jedis.zrangeWithScores("categoryList", 0, -1);
 
         List<Category> categoryList = null;
 
-        if(categorySetFromRedis ==null || categorySetFromRedis.size() == 0){
+        if(tupleSet ==null || tupleSet.size() == 0){
             System.out.println("Search in Mysql Database");
             categoryList = categoryDao.findCategoryList();
 
@@ -37,10 +40,17 @@ public class CategoryServiceImpl implements CategoryService {
             System.out.println("Get from Redis");
             categoryList =new ArrayList<Category>();
 
-            for (String category : categorySetFromRedis) {
+           /* for (String category : categorySetFromRedis) {
                 Category categoryExp = new Category();
                 categoryExp.setCname(category);
                 categoryList.add(categoryExp);
+            }*/
+
+            for (Tuple tuple : tupleSet) {
+                Category category = new Category();
+                category.setCid((int) tuple.getScore());
+                category.setCname(tuple.getElement());
+                categoryList.add(category);
             }
         }
             return categoryList;
