@@ -12,8 +12,10 @@ public class PageBean<T> {
 
     private List<T> list;
 
+
     public int getTotalCount() {
         return totalCount;
+
     }
 
     public void setTotalCount(int totalCount) {
