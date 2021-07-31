@@ -47,7 +47,28 @@
                 if(previousPage < 1) previousPage = 1;
                 pagination_Lis += '<li class="threeword"onclick="javascript:load('+cid+','+previousPage+');" ><a href="javascript:void(0);">上一页</a></li>';
 
-                for (var i = 1; i <= pb.totalPage; i++) {
+                var begin;
+                var end;
+
+                if(pb.totalPage<10){
+                    begin = 1;
+                    end = pb.totalPage;
+                }else{
+                    begin = pb.currentPage - 5;
+                    end = pb.currentPage + 4;
+                    if(begin<1){
+                        begin = 1;
+                        end = begin+9;
+                    }
+                    if(end>pb.totalPage){
+                        begin = end -9;
+                        end = pb.totalPage;
+                    }
+                }
+
+
+                //Display only 10 Pages
+                for (var i = begin; i <= end; i++) {
                     if(pb.currentPage == i){
                         pagination_Lis +='<li class="curPage" onclick="javascript:load('+cid+','+i+');" ><a href="javascript:void(0);">'+i+'</a></li>';
                     }else{
@@ -57,6 +78,18 @@
                     // li = '<li class="curPage" onclick="javascipt:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>';
 
                 }
+
+                //Display all Pages
+                /*for (var i = 1; i <= pb.totalPage; i++) {
+                    if(pb.currentPage == i){
+                        pagination_Lis +='<li class="curPage" onclick="javascript:load('+cid+','+i+');" ><a href="javascript:void(0);">'+i+'</a></li>';
+                    }else{
+                        pagination_Lis +='<li onclick="javascript:load('+cid+','+i+');" ><a href="javascript:void(0);">'+i+'</a></li>';
+                    }
+
+                    // li = '<li class="curPage" onclick="javascipt:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>';
+
+                }*/
                 var nextPage = pb.currentPage + 1;
                 if(nextPage > pb.totalPage) nextPage =pb.totalPage;
                 pagination_Lis += '<li onclick="javascript:load('+cid+','+nextPage+');" class="threeword"><a href="javascript:void(0);">下一页</a></li>';
