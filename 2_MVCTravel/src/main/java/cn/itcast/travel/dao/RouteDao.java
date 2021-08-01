@@ -8,5 +8,5 @@ public interface RouteDao {
 
     int findTotalCount(int cid);
 
-    List<Route> findByPage(int cid, int pageSize, int start);
+    List<Route> findByPage(int cid, int pageSize, int start, String rname);
 }
