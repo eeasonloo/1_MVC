@@ -17,10 +17,46 @@ public class RouteDaoImpl implements RouteDao {
     JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
 
     @Override
-    public int findTotalCount(int cid) {
-        String sql = "select count(*) from tab_route where cid = ?";
+    public int findTotalCount(int cid, String rname) {
+/*        String sql = "select count(*) from tab_route where 1=1";
+        StringBuilder sb = new StringBuilder(sql);
 
-        return template.queryForObject(sql,Integer.class,cid);
+        List params = new ArrayList();
+
+        if(cid != 0 ){
+            sb.append(" and cid = ?");
+            params.add(cid);
+        }
+
+        if(rname != null && !(rname.equals(""))){
+            sb.append(" and rname like ?");
+            params.add("%"+rname+"%");
+        }
+
+        return template.queryForObject(sb.toString(),Integer.class,params.toArray());*/
+        //String sql = "select count(*) from tab_route where cid = ?";
+        //1.定义sql模板
+        String sql = "select count(*) from tab_route where 1=1 ";
+        StringBuilder sb = new StringBuilder(sql);
+
+        List params = new ArrayList();//条件们
+        //2.判断参数是否有值
+        if(cid != 0){
+            sb.append( " and cid = ? ");
+
+            params.add(cid);//添加？对应的值
+        }
+
+        if(rname != null && rname.length() > 0){
+            sb.append(" and rname like ? ");
+
+            params.add("%"+rname+"%");
+        }
+
+        sql = sb.toString();
+
+
+        return template.queryForObject(sql,Integer.class,params.toArray());
     }
 
     @Override
@@ -49,8 +85,12 @@ public class RouteDaoImpl implements RouteDao {
         for (Object param : params) {
             System.out.println("1 :" + param);
         }*/
+        sql = sb.toString();
 
-
-        return template.query(sb.toString(),new BeanPropertyRowMapper<Route>(Route.class),params.toArray());
+        List<Route> routeList=  template.query(sql,new BeanPropertyRowMapper<Route>(Route.class),params.toArray());
+        for (Route route : routeList) {
+            System.out.println(route);
+        }
+        return routeList;
     }
 }

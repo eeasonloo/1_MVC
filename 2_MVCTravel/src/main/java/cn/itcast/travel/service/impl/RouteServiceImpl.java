@@ -17,7 +17,7 @@ public class RouteServiceImpl implements RouteService {
     public PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname) {
         PageBean<Route> pageBean = new PageBean<>();
 
-        int totalCount = routeDao.findTotalCount(cid);
+        int totalCount = routeDao.findTotalCount(cid,rname);
         int totalPage = totalCount % pageSize == 0 ? totalCount/pageSize : totalCount/pageSize+1;
         int start = (currentPage-1) * pageSize;
         List<Route> routeList = routeDao.findByPage(cid,pageSize,start,rname);

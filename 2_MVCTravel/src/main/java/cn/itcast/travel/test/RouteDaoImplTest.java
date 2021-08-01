@@ -5,6 +5,7 @@ import cn.itcast.travel.dao.impl.RouteDaoImpl;
 import cn.itcast.travel.domain.Route;
 import org.junit.Test;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class RouteDaoImplTest {
@@ -13,14 +14,16 @@ public class RouteDaoImplTest {
 
     @Test
     public void findTotalCount(){
-       int count =  routeDao.findTotalCount(5);
+       int count =  routeDao.findTotalCount(5,"兵");
         System.out.println(count);
 
     }
 
     @Test
-    public void findByPage(){
-        List<Route> routeList = routeDao.findByPage(5,5,1,"兵");
+    public void findByPage() throws UnsupportedEncodingException {
+
+        List<Route> routeList = routeDao.findByPage(5,5,1,"500");
+
         for (Route route : routeList) {
             System.out.println(route);
         }

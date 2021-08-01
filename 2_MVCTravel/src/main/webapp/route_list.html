@@ -18,9 +18,11 @@
             var cid = getParameter("cid");
             var rname = getParameter("rname");
 
-
-
-
+            if(rname){
+                //url解码
+                rname = window.decodeURIComponent(rname);
+            }
+            alert(rname);
             //初始页面调load
             load(cid,null,rname);
 
@@ -174,7 +176,7 @@
                         <span class="jg">价格</span>
                     </div>
                     <ul id="routeData">
-                        <li>
+                        <!--<li>
                             <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
@@ -300,7 +302,7 @@
                                     <span>起</span>
                                 </p>
                                 <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
+                            </div>-->
                         </li>
                     </ul>
                     <div class="page_num_inf">

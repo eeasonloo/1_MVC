@@ -23,6 +23,8 @@ public class RouteServlet extends BaseServlet {
 
         String rname = request.getParameter("rname");
         rname = new String(rname.getBytes("iso-8859-1"), "utf-8");
+        System.out.println(rname);
+
 
         int cid = 0;
         int currentPage = 1;
