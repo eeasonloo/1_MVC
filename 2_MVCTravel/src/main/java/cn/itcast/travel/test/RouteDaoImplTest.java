@@ -20,7 +20,7 @@ public class RouteDaoImplTest {
 
     @Test
     public void findByPage(){
-        List<Route> routeList = routeDao.findByPage(5,10,0);
+        List<Route> routeList = routeDao.findByPage(5,5,1,"兵");
         for (Route route : routeList) {
             System.out.println(route);
         }
