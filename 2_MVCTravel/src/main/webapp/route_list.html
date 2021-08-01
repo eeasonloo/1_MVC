@@ -16,17 +16,19 @@
             var cid = search.split("=")[1];*/
 
             var cid = getParameter("cid");
-            // var rname = getParameter("rname");
-            // alert(rname);
+            var rname = getParameter("rname");
+
+
+
 
             //初始页面调load
-            load(cid,null);
+            load(cid,null,rname);
 
 
         });
 
-        function load(cid,currentPage){
-            $.get("route/pageQuery",{cid:cid,currentPage:currentPage},function (pb) {
+        function load(cid,currentPage,rname){
+            $.get("route/pageQuery",{cid:cid,currentPage:currentPage,rname:rname},function (pb) {
                 //1. display paging
                 $("#totalPage").html(pb.totalPage);
                 $("#totalCount").html(pb.totalCount);
