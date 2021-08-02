@@ -14,7 +14,7 @@ public class RouteDaoImplTest {
 
     @Test
     public void findTotalCount(){
-       int count =  routeDao.findTotalCount(5,"兵");
+       int count =  routeDao.findTotalCount(5,"sad");
         System.out.println(count);
 
     }
