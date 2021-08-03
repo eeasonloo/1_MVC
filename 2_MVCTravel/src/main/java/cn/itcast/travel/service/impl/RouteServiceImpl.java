@@ -1,10 +1,15 @@
 package cn.itcast.travel.service.impl;
 
 import cn.itcast.travel.dao.RouteDao;
+import cn.itcast.travel.dao.RouteImgDao;
+import cn.itcast.travel.dao.SellerDao;
 import cn.itcast.travel.dao.impl.RouteDaoImpl;
+import cn.itcast.travel.dao.impl.RouteImgDaoImpl;
+import cn.itcast.travel.dao.impl.SellerDaoImpl;
 import cn.itcast.travel.domain.PageBean;
 import cn.itcast.travel.domain.Route;
 import cn.itcast.travel.domain.RouteImg;
+import cn.itcast.travel.domain.Seller;
 import cn.itcast.travel.service.RouteService;
 
 
@@ -14,7 +19,7 @@ public class RouteServiceImpl implements RouteService {
 
     private RouteDao routeDao = new RouteDaoImpl();
     private SellerDao sellerDao = new SellerDaoImpl();
-    private RouteImgDao routeImgDao = new RouteImgImpl();
+    private RouteImgDao routeImgDao = new RouteImgDaoImpl();
 
 
     @Override
@@ -41,6 +46,8 @@ public class RouteServiceImpl implements RouteService {
         Route route = routeDao.findOne(Integer.parseInt(rid));
 
         //2.用route.sid,查tab_seller
+        Seller seller = sellerDao.findOne(route.getSid());
+        route.setSeller(seller);
 
         //3.用route.rid,查tab_routeimg
         return route;
