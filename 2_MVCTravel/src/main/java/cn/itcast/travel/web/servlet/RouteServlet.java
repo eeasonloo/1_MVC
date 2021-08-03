@@ -46,10 +46,14 @@ public class RouteServlet extends BaseServlet {
 
     }
 
-    public Route findOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void findOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Route route = new Route();
         String rid = request.getParameter("rid");
-        return routeService.findOne(rid);
+        route = routeService.findOne(rid);
+        writeValue(route,response);
+
+
     }
 
 }
