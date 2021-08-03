@@ -4,6 +4,7 @@ import cn.itcast.travel.dao.RouteDao;
 import cn.itcast.travel.dao.impl.RouteDaoImpl;
 import cn.itcast.travel.domain.PageBean;
 import cn.itcast.travel.domain.Route;
+import cn.itcast.travel.domain.RouteImg;
 import cn.itcast.travel.service.RouteService;
 
 
@@ -12,6 +13,9 @@ import java.util.List;
 public class RouteServiceImpl implements RouteService {
 
     private RouteDao routeDao = new RouteDaoImpl();
+    private SellerDao sellerDao = new SellerDaoImpl();
+    private RouteImgDao routeImgDao = new RouteImgImpl();
+
 
     @Override
     public PageBean<Route> pageQuery(int cid, int currentPage, int pageSize, String rname) {
@@ -29,5 +33,16 @@ public class RouteServiceImpl implements RouteService {
         pageBean.setList(routeList);
 
         return pageBean;
+    }
+
+    @Override
+    public Route findOne(String rid) {
+        //1.查tab_route
+        Route route = routeDao.findOne(Integer.parseInt(rid));
+
+        //2.用route.sid,查tab_seller
+
+        //3.用route.rid,查tab_routeimg
+        return route;
     }
 }
