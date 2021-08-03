@@ -29,4 +29,10 @@ public class RouteDaoImplTest {
         }
 
     }
+
+    @Test
+    public void findOne(){
+        Route route = routeDao.findOne(1);
+        System.out.println(route);
+    }
 }
