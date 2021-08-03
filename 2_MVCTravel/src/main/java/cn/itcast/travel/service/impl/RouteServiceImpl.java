@@ -50,6 +50,9 @@ public class RouteServiceImpl implements RouteService {
         route.setSeller(seller);
 
         //3.用route.rid,查tab_routeimg
+        List<RouteImg> routeImgList = routeImgDao.findAll(route.getRid());
+        route.setRouteImgList(routeImgList);
+
         return route;
     }
 }
