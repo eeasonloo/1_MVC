@@ -219,9 +219,9 @@
             $("#sellerPhone").html(resp.seller.consphone);
             $("#sellerAddress").html(resp.seller.address);
 
-            /*var dtImagesDisplay = '';
-            dtImagesDisplay += '<img alt="" class="big_img" src="resp.routeImgList[1].bigPic">'*/
-            /*$("#dtBigPic").html(dtImagesDisplay);*/
+
+            var dtImagesDisplay = '<img alt="" class="big_img" src="'+resp.routeImgList[0].bigPic+'">'
+            $("#dtBigPic").html(dtImagesDisplay);
 
 
             var ddImagesDisplay = '';
