@@ -1,5 +1,9 @@
 package cn.itcast.travel.web.servlet;
 
+import cn.itcast.travel.domain.Favorite;
+import cn.itcast.travel.domain.User;
+import cn.itcast.travel.service.FavouriteService;
+import cn.itcast.travel.service.impl.FavouriteServiceImpl;
 import cn.itcast.travel.service.impl.RouteServiceImpl;
 import cn.itcast.travel.domain.PageBean;
 import cn.itcast.travel.domain.Route;
@@ -15,6 +19,7 @@ import java.io.IOException;
 public class RouteServlet extends BaseServlet {
 
     private RouteService routeService = new RouteServiceImpl();
+    private FavouriteService favouriteService = new FavouriteServiceImpl() ;
 
     public void pageQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String cidStr = request.getParameter("cid");
@@ -53,7 +58,23 @@ public class RouteServlet extends BaseServlet {
         route = routeService.findOne(rid);
         writeValue(route,response);
 
+    }
 
+    public void isFavourite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String rid = request.getParameter("rid");
+
+        User loginUser = (User) request.getSession().getAttribute("loginUser");
+
+        Boolean isFavourite = false;
+
+
+        if(loginUser!=null){
+            int uid = loginUser.getUid();
+            isFavourite =favouriteService.isFavourite(Integer.parseInt(rid),uid);
+        }
+
+        writeValue(isFavourite,response);
     }
 
 }
