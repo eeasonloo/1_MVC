@@ -14,4 +14,10 @@ public class FavouriteDaoImplTest {
         System.out.println(favorite);
 
     }
+
+    @Test
+    public void countFavourite(){
+        int count = favouriteDao.countFavourite(1);
+        System.out.println(count);
+    }
 }
