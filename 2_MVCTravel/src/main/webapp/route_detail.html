@@ -71,7 +71,7 @@
                         <a id="isFavourite" class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
 
 <!--                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>-->
-                        <span>已收藏100次</span>
+                        <span id="favouriteCount">已收藏100次</span>
                     </p>
                 </div>
             </div>
@@ -218,6 +218,8 @@
             $("#sellerName").html(resp.seller.sname);
             $("#sellerPhone").html(resp.seller.consphone);
             $("#sellerAddress").html(resp.seller.address);
+
+            $("#favouriteCount").html('已收藏'+resp.count+'次');
 
 
             var dtImagesDisplay = '<img alt="" class="big_img" src="'+resp.routeImgList[0].bigPic+'">'
