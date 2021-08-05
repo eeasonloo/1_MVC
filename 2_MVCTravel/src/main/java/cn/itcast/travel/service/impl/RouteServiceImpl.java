@@ -1,8 +1,10 @@
 package cn.itcast.travel.service.impl;
 
+import cn.itcast.travel.dao.FavouriteDao;
 import cn.itcast.travel.dao.RouteDao;
 import cn.itcast.travel.dao.RouteImgDao;
 import cn.itcast.travel.dao.SellerDao;
+import cn.itcast.travel.dao.impl.FaouriteDaoImpl;
 import cn.itcast.travel.dao.impl.RouteDaoImpl;
 import cn.itcast.travel.dao.impl.RouteImgDaoImpl;
 import cn.itcast.travel.dao.impl.SellerDaoImpl;
@@ -20,6 +22,7 @@ public class RouteServiceImpl implements RouteService {
     private RouteDao routeDao = new RouteDaoImpl();
     private SellerDao sellerDao = new SellerDaoImpl();
     private RouteImgDao routeImgDao = new RouteImgDaoImpl();
+    private FavouriteDao favouriteDao = new FaouriteDaoImpl();
 
 
     @Override
@@ -53,6 +56,9 @@ public class RouteServiceImpl implements RouteService {
         List<RouteImg> routeImgList = routeImgDao.findAll(route.getRid());
         route.setRouteImgList(routeImgList);
 
+        //4.用route.rid,查tab_favorite(count*)
+        int count = favouriteDao.countFavourite(Integer.parseInt(rid));
+        route.setCount(count);
         return route;
     }
 }
