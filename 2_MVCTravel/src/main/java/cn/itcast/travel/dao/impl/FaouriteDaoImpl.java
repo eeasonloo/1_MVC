@@ -23,4 +23,10 @@ public class FaouriteDaoImpl implements FavouriteDao {
         }
         return favorite;
     }
+
+    @Override
+    public int countFavourite(int rid) {
+        String sql = "select count(*) from tab_favorite where rid = ?";
+        return template.queryForObject(sql, Integer.class, rid);
+    }
 }

@@ -4,4 +4,6 @@ import cn.itcast.travel.domain.Favorite;
 
 public interface FavouriteDao {
     Favorite isFavourite(int rid, int uid);
+
+    int countFavourite(int rid);
 }
