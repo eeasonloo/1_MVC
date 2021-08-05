@@ -68,9 +68,9 @@
                 <div class="pros_price">
                     <p class="price"><strong id="price"></strong><span>起</span></p>
                     <p class="collect">
-                        <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                        <a id="isFavourite" class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
 
-                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+<!--                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>-->
                         <span>已收藏100次</span>
                     </p>
                 </div>
@@ -245,6 +245,19 @@
             load();
 
         })
+
+        $.get("route/isFavourite",{rid:rid},function(flag){
+            if(flag){
+            // <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>-->
+                $("#isFavourite").addClass("already");
+                $("#isFavourite").prop("disabled", "disabled");
+            }else{
+
+            }
+
+        })
+
+
     })
     </script>
 </body>
