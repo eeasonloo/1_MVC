@@ -51,4 +51,13 @@ public class Favorite implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Favorite{" +
+                "route=" + route +
+                ", date='" + date + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }
