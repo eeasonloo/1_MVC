@@ -77,4 +77,16 @@ public class RouteServlet extends BaseServlet {
         writeValue(isFavourite,response);
     }
 
+    public void addFavourite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String rid = request.getParameter("rid");
+
+        User loginUser = (User) request.getSession().getAttribute("loginUser");
+
+        if(loginUser!=null){
+            int uid = loginUser.getUid();
+            favouriteService.addFavourite(Integer.parseInt(rid),uid);
+        }else{
+            return;
+        }
+    }
 }
