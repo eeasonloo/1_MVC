@@ -22,4 +22,8 @@ public class FavouriteDaoImplTest {
     }
 
 
+    @Test
+    public void addFavourite(){
+        favouriteDao.addFavourite(7,13);
+    }
 }
