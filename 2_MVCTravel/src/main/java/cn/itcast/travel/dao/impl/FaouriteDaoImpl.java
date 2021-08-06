@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.rmi.AccessException;
+import java.util.Date;
 
 public class FaouriteDaoImpl implements FavouriteDao {
 
@@ -28,5 +29,11 @@ public class FaouriteDaoImpl implements FavouriteDao {
     public int countFavourite(int rid) {
         String sql = "select count(*) from tab_favorite where rid = ?";
         return template.queryForObject(sql, Integer.class, rid);
+    }
+
+    @Override
+    public void addFavourite(int rid, int uid) {
+        String sql = "insert into tab_favorite values(?,?,?)";
+        template.update(sql,rid, new Date(),uid);
     }
 }
