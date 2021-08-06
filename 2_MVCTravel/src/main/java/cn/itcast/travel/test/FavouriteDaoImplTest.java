@@ -20,4 +20,6 @@ public class FavouriteDaoImplTest {
         int count = favouriteDao.countFavourite(1);
         System.out.println(count);
     }
+
+
 }

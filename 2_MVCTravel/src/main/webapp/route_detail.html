@@ -252,15 +252,33 @@
             if(flag){
             // <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>-->
                 $("#isFavourite").addClass("already");
-                $("#isFavourite").prop("disabled", "disabled");
+                $("#isFavourite").attr("disabled", "disabled");
             }else{
 
             }
 
         })
 
-
     })
+        function addFavourite() {
+        var rid = getParameter("rid");
+            $.get("user/show",{},function(user){
+                if(user){
+                    //1. if user logged in
+                    $.get("route/addFavourite",{rid:rid},function(){
+                        location.reload();
+
+                    })
+
+
+                }else{
+                    //2. if user not logged in
+                    alert("Please Login Before Add Favourite");
+                    location.href = "http://localhost/travel/login.html"
+                }
+            })
+
+        }
     </script>
 </body>
 
